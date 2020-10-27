@@ -1,0 +1,31 @@
+{
+  "name": "golang-demo",
+  "description": "golang demo project",
+  "version": "1.0.0",
+  "group": "dapp",
+  "color": "primary",
+  "public_url": "/",
+  "provider": "community",
+  "keywords": [],
+  "main": ".",
+  "author": "polunzh <polunzh@gmail.com>",
+  "runtime": [
+    {
+      "platform": "linux",
+      "interpreter": "binary",
+      "binary": true,
+      "script": "helloworld.linux"
+    },
+    {
+      "platform": "darwin",
+      "interpreter": "binary",
+      "script": "helloworld.darwin"
+    }
+  ],
+  "capabilities": {
+    "dynamicPathPrefix": false
+  },
+  "hooks": {
+    "pre-deploy": "GOOS=darwin GOARCH=amd64 go build -o helloworld.darwin && GOOS=linux GOARCH=amd64 go build -o helloworld.linux && abtnode bundle"
+  }
+}

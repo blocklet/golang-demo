@@ -3,29 +3,27 @@ author:
   email: polunzh@gmail.com
 license: ISC
 description: golang demo project
-files:
-  - helloworld.darwin
-  - helloworld.linux
 name: golang-demo
 version: 1.0.0
 group: dapp
 publicUrl: /
 keywords: []
 main: .
+files:
+  - dist
 engine:
   - platform: linux
     interpreter: binary
-    script: helloworld.linux
+    script: dist/helloworld.linux
   - platform: darwin
     interpreter: binary
-    script: helloworld.darwin
+    script: dist/helloworld.darwin
 capabilities:
   dynamicPathPrefix: false
 did: z8iZiCMiVR5BxB9PdWV5VGirRfCHHwTqsykPN
-scripts:
+hooks:
   preDeploy: >-
-    GOOS=darwin GOARCH=amd64 go build -o helloworld.darwin && GOOS=linux
-    GOARCH=amd64 go build -o helloworld.linux && abtnode bundle
+    rm -rf dist && GOOS=darwin GOARCH=amd64 go build -o dist/helloworld.darwin && GOOS=linux GOARCH=amd64 go build -o dist/helloworld.linux && an bundle
 community: ''
 documentation: ''
 homepage: ''

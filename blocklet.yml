@@ -1,0 +1,35 @@
+author:
+  name: polunzh
+  email: polunzh@gmail.com
+license: ISC
+description: golang demo project
+name: golang-demo
+version: 1.0.0
+group: dapp
+publicUrl: /
+keywords: []
+main: .
+files:
+  - dist
+engine:
+  - platform: linux
+    interpreter: binary
+    script: dist/helloworld.linux
+  - platform: darwin
+    interpreter: binary
+    script: dist/helloworld.darwin
+capabilities:
+  dynamicPathPrefix: false
+did: z8iZiCMiVR5BxB9PdWV5VGirRfCHHwTqsykPN
+hooks:
+  preDeploy: >-
+    rm -rf dist && GOOS=darwin GOARCH=amd64 go build -o dist/helloworld.darwin && GOOS=linux GOARCH=amd64 go build -o dist/helloworld.linux && an bundle
+community: ''
+documentation: ''
+homepage: ''
+charging:
+  price: 0
+interfaces: []
+environments: []
+screenshots: []
+specVersion: 1.0.0
